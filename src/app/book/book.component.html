@@ -1,5 +1,12 @@
 <h1>Welcome</h1>
 <div>
+    <form>
+        Enter Title: <input type="text" [(ngModel)]="book.title" name="title" /><br/>
+        Enter Author: <input type="text" [(ngModel)]="book.author" name="author" /><br/>
+        <button (click)="addBook()">Add Book</button>
+    </form>
+</div>
+<div>
     <table>
         <tr>
             <th>Id</th>
