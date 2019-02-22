@@ -27,6 +27,9 @@ export class BookService {
         //     catchError(this.handleError)
         // );
     }
+    deleteBook(bookId: string) {
+        return this.http.delete(this.apiURL + '/' + bookId);
+    }
     handleError(error) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
