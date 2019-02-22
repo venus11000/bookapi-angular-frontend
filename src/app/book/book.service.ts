@@ -16,6 +16,17 @@ export class BookService {
                 catchError(this.handleError)
             );
     }
+    addBook(book: Book) {
+        const body = JSON.stringify(book);
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.http.post(this.apiURL, body, httpOptions);
+        // .pipe(
+        //     retry(1),
+        //     catchError(this.handleError)
+        // );
+    }
     handleError(error) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
