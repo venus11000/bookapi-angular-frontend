@@ -21,11 +21,18 @@ export class BookService {
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.post(this.apiURL, body, httpOptions);
-        // .pipe(
-        //     retry(1),
-        //     catchError(this.handleError)
-        // );
+        if (book.id) {
+            return this.http.put(this.apiURL + '/' + book.id, body, httpOptions);
+        } else {
+            return this.http.post(this.apiURL, body, httpOptions);
+        }
+    }
+    getBookById(bookId: string): Observable<Book> {
+        return this.http.get<Book>(this.apiURL + '/' + bookId)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
     }
     deleteBook(bookId: string) {
         return this.http.delete(this.apiURL + '/' + bookId);
