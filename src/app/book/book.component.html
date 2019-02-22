@@ -18,7 +18,9 @@
             <td>{{book.id}}</td>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
-            <td>Edit Delete</td>
+            <td>Edit
+                <button (click)="deleteBook(book.id)">Delete</button>
+            </td>
         </tr>
     </table>
 </div>
