@@ -18,7 +18,8 @@
             <td>{{book.id}}</td>
             <td>{{book.title}}</td>
             <td>{{book.author}}</td>
-            <td>Edit
+            <td>
+                <button (click)="getBookById(book.id)">Edit</button>
                 <button (click)="deleteBook(book.id)">Delete</button>
             </td>
         </tr>

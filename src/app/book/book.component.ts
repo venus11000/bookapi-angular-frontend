@@ -43,6 +43,15 @@ export class BookComponent implements OnInit {
             console.log(error);
         });
     }
+    getBookById(bookId: string) {
+        this.bookService.getBookById(bookId)
+        .subscribe((response) => {
+            this.book = response;
+            console.log(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
     deleteBook(bookId: string) {
         this.bookService.deleteBook(bookId)
         .subscribe((response) => {
