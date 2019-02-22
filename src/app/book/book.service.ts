@@ -4,6 +4,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Book } from './book';
 
+@Injectable()
 export class BookService {
     private apiURL = 'http://localhost:8080/bookapi/api/book';
     constructor(private http: HttpClient) { }
