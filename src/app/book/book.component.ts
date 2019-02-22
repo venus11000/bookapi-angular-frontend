@@ -8,11 +8,17 @@ import { BookService } from './book.service';
     styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
+    book = new Book();
     books: Book[];
 
     constructor(private bookService: BookService) {}
     ngOnInit(): void {
         this.getBooks();
+    }
+    private reset(): void {
+        this.book.id = null;
+        this.book.title = null;
+        this.book.author = null;
     }
     getBooks(): void {
         this.bookService.getAllBooks()
@@ -20,6 +26,20 @@ export class BookComponent implements OnInit {
             this.books = bookData;
             console.log(this.books, bookData);
          }, (error) => {
+            console.log(error);
+        });
+    }
+    addBook(): void {
+        this.bookService.addBook(this.book)
+        .subscribe((response) => {
+            console.log(response);
+            this.reset();
+            this.getBooks();
+        }, (error) => {
+            if (error.hasOwnProperty('status') && error.status === 200) {
+                this.reset();
+                this.getBooks();
+            }
             console.log(error);
         });
     }
